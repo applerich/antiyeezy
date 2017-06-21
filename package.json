@@ -1,7 +1,7 @@
 {
   "name": "antiyeezy",
   "version": "1.0.0",
-  "description": "based off splash party",
+  "description": "an adidas queue destroyer based off splash party",
   "main": "app.js",
   "dependencies": {
     "beepbeep": "^1.2.1",
