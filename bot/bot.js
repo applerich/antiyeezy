@@ -157,7 +157,7 @@ async function runBot() {
   addCustomActions()
   await createInstances()
   await loadPages()
-  console.log('All instances  tests...\n')
+  console.log('All instances loaded...\n')
 }
 
 runBot()
