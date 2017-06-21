@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>🎲 ANTI_YEEZY</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>🎲 ANTI_YEEZY /// WATCHER</h1>
+    <main id="app">
+
+      <section class="perf">
+        <p>CPU: {{cpu}}</p>
+        <p>MEMORY: {{memory}}</p>
+      </section>
+
+      <table class="instances">
+        <thead>
+          <tr>
+            <th class="col">
+              Instance
+            </th>
+            <th class="col">
+              Status
+            </th>
+            <th class="col">
+              Reloads
+            </th>
+            <th class="col">
+              Cookies
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="(instance, index) in instances"  class="instance">
+            <td class="col name">
+              Instance {{index}}
+            </td>
+            <td class="col status">
+              {{instance.status}}
+            </td>
+            <td class="col counter">
+              {{instance.count}}
+            </td>
+            <td class="col cookies">
+              -
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <!-- <span v-bind:title="message">
+        Hover your mouse over me for a few seconds
+        to see my dynamically bound title!
+      </span> -->
+
+    </main>
+  </body>
+  <script src="app.js"></script>
+</html>

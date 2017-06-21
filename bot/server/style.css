@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: monospace;
+  font-size: 13px;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.perf {
+  display: inline-block;
+  border-bottom: 1px dashed #CCC;
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  min-width: 125px;
+}
+
+th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+th, td {
+  text-align: left;
+  padding: 2px 5px 2px 0px;
+}
+
+.instance .col {
+}
+
+p {
+  margin: 0;
+}
