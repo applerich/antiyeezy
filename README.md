@@ -1,12 +1,21 @@
-# ANTI YEEZY
+# 🎲 **ANTIYEEZY**
+Adidas queue destroyer.  
+Based off work from splashparty.  
 
-Based off work from splashparty
+<span style="color:blue">*Requires: Node.js 8+*</span>
 
-**Requires: Node 8**
+#### **Features:**
+* Auto refresh
+* Display memory/cpu usage
+* Display status of each instance in browser
+* Play sound and auto open browser on success
 
-### Instuctions:
+#### Instuctions:
 1. `npm install`
-2. `npm start`
+2. Edit options in `bot/bot.js` to change party size, wait time, and adidas live URL
+3. `npm start`
 
-If crashes and server wont restart:  
-`npm stop`
+If cancelled/crashes and server wont restart force quit with: `npm stop`
+
+
+donate BTC: `1FZkwT1psGBxgQA7YqTSVtc2fWXNtrf6HC`
