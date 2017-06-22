@@ -4,7 +4,7 @@ process.title = 'antiyeezy'
 
 /* config options */
 const CONFIG = {
-  partySize: 10,
+  partySize: 20,
   testUrl: 'http://zyzski.com/yeezy',
   liveUrl: 'http://adidas.bot.nu/yeezy',
   showBrowsers: false,
@@ -45,9 +45,6 @@ app.get('/', (req, res) => {
 
 io.on('connection', socket => {
   console.log('front end connected')
-  // socket.on('my other event', data => {
-  // 	console.log(data);
-  // });
 })
 
 const state = {
@@ -75,7 +72,9 @@ async function createInstances() {
         show: CONFIG.showBrowsers,
         alwaysOnTop: false,
         dock: true,
-        openDevTools: true,
+        openDevTools: {
+          mode: 'detach',
+        },
         // webPreferences: {
         // 	partition: i,
         // partition: `persist:browser${i}`
