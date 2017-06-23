@@ -9,6 +9,7 @@ const yzy = new Vue({
 })
 
 const socket = io.connect('http://localhost:3000')
+
 socket.on('nodeSync', data => {
   yzy.cpu = data.performance.cpu
   yzy.memory = data.performance.memory
@@ -17,6 +18,7 @@ socket.on('nodeSync', data => {
     yzy.instances[index] = {
       status: status,
       count: data.instanceReloadCount[index],
+      cookies: data.instanceCookies[index],
     }
   })
   console.log(data)

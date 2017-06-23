@@ -4,9 +4,10 @@ process.title = 'antiyeezy'
 
 /* config options */
 const CONFIG = {
-  partySize: 20,
+  partySize: 2,
   testUrl: 'http://zyzski.com/yeezy',
   liveUrl: 'http://adidas.bot.nu/yeezy',
+  // liveUrl: 'http://www.adidas.com/us/ultraboost-cleats/CG4815.html',
   showBrowsers: false,
   splashUniqueIdentifier: '[data-sitekey]',
   userAgent:
@@ -54,6 +55,7 @@ const state = {
   },
   instanceReloadCount: new Array(CONFIG.partySize).fill(0),
   instanceStatus: new Array(CONFIG.partySize).fill('Initializing'),
+  instanceCookies: new Array(CONFIG.partySize),
 }
 
 console.log(state.instanceReloadCount)
@@ -84,6 +86,8 @@ async function createInstances() {
         .cookies.clearAll()
     }
 
+    updateStats()
+    io.emit('nodeSync', state)
     resolve(console.log(`${i} browsers created`))
   })
 }
@@ -113,6 +117,7 @@ async function loadPages() {
     state.instanceStatus[i] = 'Loaded'
   }
   console.timeEnd('Loaded browsers')
+  io.emit('nodeSync', state)
 }
 
 function splashParty(instance, id) {
@@ -122,9 +127,11 @@ function splashParty(instance, id) {
       if (isSplash) {
         console.log(chalk.green.bold(`Instance ${id} bypassed splash`))
         instance.cookies.get({ url: null }).then(cookies => {
+          state.instanceCookies[id] = cookies
           printCookies(cookies)
         })
         state.instanceStatus[id] = 'BYPASSED ✅'
+        io.emit('nodeSync', state)
         beep(5)
         return instance.show()
       } else {
@@ -213,6 +220,8 @@ function printCookies(cookies) {
   console.log(chalk.bgBlack.cyan('******************************************'))
   console.log(chalk.bgBlack.cyan('Complete Cookie Output'))
   console.log(chalk.bgBlack.cyan('******************************************'))
+  // console.log(JSON.stringify(cookies, null, 4))
   console.log(JSON.stringify(cookies))
+  io.emit('nodeSync', state)
   console.log(chalk.bgBlack.cyan('******************************************'))
 }
