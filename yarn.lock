@@ -837,14 +837,7 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-nightmare-wait-for-url@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/nightmare-wait-for-url/-/nightmare-wait-for-url-0.0.2.tgz#86480e3171d75c39683250800bf84a0f531f02b9"
-  dependencies:
-    debug "^2.2.0"
-    nightmare "^2.3.0"
-
-nightmare@^2.10.0, nightmare@^2.3.0:
+nightmare@^2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nightmare/-/nightmare-2.10.0.tgz#e9c5d590bb296f59685fd48218c2fbac44767b21"
   dependencies:

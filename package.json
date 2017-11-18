@@ -8,7 +8,6 @@
     "chalk": "^1.1.3",
     "express": "^4.15.3",
     "nightmare": "^2.10.0",
-    "nightmare-wait-for-url": "0.0.2",
     "opn": "^5.0.0",
     "os-utils": "^0.0.14",
     "socket.io": "^2.0.2"
@@ -16,7 +15,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node bot/bot.js",
-    "stop": "killall antiyeezy"
+    "stop": "killall antiyeezy",
+    "stopwin": "taskkill /F /IM node.exe"
   },
   "author": "zYzSkI"
 }

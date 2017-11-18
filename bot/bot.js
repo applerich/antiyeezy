@@ -4,16 +4,22 @@ process.title = 'antiyeezy';
 
 /* config options */
 const CONFIG = {
-  partySize: 5,
-  testUrl: 'http://zyzski.com/yeezy',
-  liveUrl: 'http://adidas.bot.nu/yeezy',
+  partySize: 1,
+  // testUrl: 'http://zyzski.com/yeezy',
+  // liveUrl: 'http://adidas.bot.nu/yeezy',
+  liveUrl: 'http://yzy.zyzski.com/',
   // liveUrl: 'http://www.adidas.com/us/apps/yeezy',
   showBrowsers: true,
   splashUniqueIdentifier: '[data-sitekey]',
   userAgent:
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36',
+  headers: {
+    Pragma: 'no-cache',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'en-US,en;q=0.8',
+  },
   delay: {
-    loadPageInstance: 200,
+    loadPageInstance: 1000,
     pageRefresh: 4000,
   },
 };
@@ -36,7 +42,7 @@ var io = require('socket.io')(server);
 app.use(express.static(path.join(__dirname, '/server')));
 
 server.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+  console.log('antiyeezy watcher listening on port 3000!');
   opn('http://localhost:3000');
 });
 
@@ -74,13 +80,18 @@ async function createInstances() {
         show: CONFIG.showBrowsers,
         alwaysOnTop: false,
         dock: true,
+        // preload: 'preload.js',
+        executionTimeout: 5000,
+        nodeIntegration: false,
+        webSecurity: false,
+        allowRunningInsecureContent: true,
         openDevTools: {
           mode: 'detach',
         },
-        // webPreferences: {
-        // 	partition: i,
-        // partition: `persist:browser${i}`
-        // },
+        webPreferences: {
+          // partition: i,
+          partition: `persist:browser${i}`,
+        },
       })
         .useragent(CONFIG.userAgent)
         .cookies.clearAll();
@@ -94,6 +105,7 @@ async function createInstances() {
 
 async function openPage(instance, id) {
   return instance
+    .header('Pragma', 'no-cache')
     .goto(url)
     .wait('body')
     .then(result => {
@@ -136,8 +148,13 @@ function splashParty(instance, id) {
         return instance.show();
       } else {
         return instance
+          .header('Pragma', 'no-cache')
           .wait(CONFIG.delay.pageRefresh)
-          .then(() => instance.cookies.clearAll())
+          .then(() => {
+            const cook = instance.cookies.get({ url: null });
+            console.log('COOKIES: \n', cook);
+            return instance.cookies.clearAll();
+          })
           .then(() => instance.clearCache())
           .then(() => instance.refresh())
           .then(() => {
